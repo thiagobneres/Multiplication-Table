@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\table_eight.png" />
+    <None Remove="Images\table_five.png" />
+    <None Remove="Images\table_four.png" />
+    <None Remove="Images\table_nine.png" />
+    <None Remove="Images\table_one.png" />
+    <None Remove="Images\table_seven.png" />
+    <None Remove="Images\table_six.png" />
+    <None Remove="Images\table_three.png" />
+    <None Remove="Images\table_two.png" />
+    <None Remove="Images\table_zero.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    
+    <EmbeddedResource Include="Images\table_eight.png">
+    </EmbeddedResource>  
+    <EmbeddedResource Include="Images\table_five.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_four.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_nine.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_one.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_seven.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_six.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_three.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_two.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table_zero.png">
+    </EmbeddedResource>
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="TabbedPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

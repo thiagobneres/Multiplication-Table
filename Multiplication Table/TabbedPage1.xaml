@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Multiplication_Table.TabbedPage1"
+            BarBackgroundColor="#2196F3"
+            SelectedTabColor="White">
+    
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Learn">
+        <StackLayout HorizontalOptions="Center">
+            <CarouselView x:Name="_myCarouselView" Margin="30" IndicatorView="{x:Reference indicatorView}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Image Source="{Binding Image}" Aspect="AspectFill" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView"
+                           IndicatorSize="10"
+                           IndicatorColor="LightGray"
+                           Margin="15"
+                           SelectedIndicatorColor="DarkGray"/>
+        </StackLayout>
+    </ContentPage>
+    
+    <ContentPage Title="Practice">
+        <StackLayout>
+            <Label HorizontalTextAlignment="Center" TextColor="Gray" Margin="0,60,0,40" FontSize="120" Text="" x:Name="_combination"/>
+            <Label HorizontalTextAlignment="Center" Margin="25,0,25,40" TextColor="Blue" FontSize="20" Text="Write a message here" IsVisible="false" x:Name="_submitCopy"/>
+            <Label HorizontalTextAlignment="Center" x:Name="_prompt" FontAttributes="None" Margin="25,0,25,0" TextColor="Gray" FontSize="20" Text="Type your answer below:"/>
+            <Entry TextColor="Gray" Completed="OnEntrySubmit" IsEnabled="True" Keyboard="Numeric" FontSize="60" HorizontalTextAlignment="Center" BackgroundColor="#f2f2f2" HeightRequest="90" Margin="120, 50, 120, 50" MaxLength="2" x:Name="_userInput"/>
+            <Button Text="Next" FontSize="30" IsVisible="false" TextTransform="None" WidthRequest="180" CornerRadius="5" x:Name="_nextButton" Clicked="OnClickNext" BackgroundColor="#2196F3" HorizontalOptions="Center" TextColor="White"></Button>
+        </StackLayout>
+    </ContentPage>
+
+</TabbedPage>
