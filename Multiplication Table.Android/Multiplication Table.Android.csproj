@@ -155,4 +155,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\MultiplicationTableAppIcon_adaptive_fore.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionMultiplicationTableAndroidHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

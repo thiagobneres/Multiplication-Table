@@ -35,4 +35,12 @@
         </StackLayout>
     </ContentPage>
 
+    <ContentPage Title="Analyze">
+        <StackLayout VerticalOptions="Center">
+            <Label HorizontalTextAlignment="Center" Margin="0,20,0,0" FontAttributes="Bold" TextColor="Red" FontSize="110" Text="75%" x:Name="_sameDayProgress"/>
+            <Label HorizontalTextAlignment="Center" Margin="20,20,20,100" TextColor="Gray" FontSize="25" Text="Your percentage of right answers today" x:Name="_progressPageCopy"/>
+            <Label HorizontalTextAlignment="Center" Margin="20,0,20,0" TextColor="Red" FontSize="25" Text="You're getting there!" x:Name="_progressMessage"/>
+        </StackLayout>
+    </ContentPage>
+
 </TabbedPage>

@@ -18,6 +18,7 @@ namespace Multiplication_Table
             SQLiteConnectionString options = new SQLiteConnectionString(DataSource, false);
             _connection = new SQLiteConnection(options);
             _connection.CreateTable<Combination>();
+            _connection.CreateTable<Progress>();
         }
 
         public void AddCombination(Combination combination)
@@ -27,7 +28,7 @@ namespace Multiplication_Table
 
         public int GetCombinationsCount()
         {
-            var entries = _connection.Table<Combination>().ToList();
+            var entries = _connection.Table<Combination>().ToList(); // Need to check if this is too expensive
             return entries.Count;
         }
 
@@ -88,6 +89,61 @@ namespace Multiplication_Table
             var hardCombination = hardCombinations[rnd.Next(0, 5)];
             return hardCombination;
         }
+
+        public bool CheckProgressOnDay(DateTime date)
+        {
+            string dateCalendar = date.ToString("MM/dd/yyyy"); 
+            string query = "SELECT date FROM Progress WHERE date = ?";
+            var progressDate = _connection.Query<Progress>(query, dateCalendar);
+
+            if (progressDate.Count == 0)
+            {
+                Console.WriteLine("Database - CheckProgressOnDay - returned false");
+                return false;
+            }
+
+
+            else
+            {
+                Console.WriteLine("Database - CheckProgressOnDay - returned true");
+                return true;
+            }
+
+        }
+
+        public Progress GetProgressOnDay(DateTime date)
+        {
+            string dateCalendar = date.ToString("MM/dd/yyyy");
+            string query = "SELECT * FROM Progress WHERE date = ?";
+            List<Progress> progressDate = _connection.Query<Progress>(query, dateCalendar);
+            Console.WriteLine("Code gets here 1");
+            Console.WriteLine("GetProgressOnDay - Database - date: " + progressDate[0].date);
+            Console.WriteLine("GetProgressOnDay - Database - day count: " + progressDate[0].dayCount);
+            Console.WriteLine("GetProgressOnDay - Database - right answers: " + progressDate[0].rightAnswers);
+            return progressDate[0]; // Less expensive and it will always be only 1 result anyways, so no need for list
+        }
+
+        public void UpdateProgressOnDay(DateTime date, int count, int rightAnswerCount)
+        {
+            string dateCalendar = date.ToString("MM/dd/yyyy");
+            string query = "UPDATE Progress SET rightAnswers = ?, dayCount = ? WHERE date = ?";
+            _connection.Query<Progress>(query, rightAnswerCount, count, dateCalendar); // Note that we're passing dateCalendar and not date
+            Console.WriteLine("Updated progress on day. Date = " + dateCalendar);
+            Console.WriteLine("Updated progress on day. DayCount = " + count);
+            Console.WriteLine("Updated progress on day. RightAnswers = " + rightAnswerCount);
+
+        }
+
+        public void AddProgressOnDay(Progress progressOnDay)
+        {
+            _connection.Insert(progressOnDay);
+            Console.WriteLine("Progress added on day (first time)");
+            Console.WriteLine("Date: " + progressOnDay.date);
+            Console.WriteLine("Day count: " + progressOnDay.dayCount);
+            Console.WriteLine("Right answers: " + progressOnDay.rightAnswers);
+        }
+
+        // Consider a delete for a cleaner DB
 
     }
 }
